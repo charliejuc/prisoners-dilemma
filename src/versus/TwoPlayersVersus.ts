@@ -12,9 +12,6 @@ export const twoPlayersVersus =
       maxTurnsPairs: number;
     };
   } => {
-    const _p1 = p1.copy();
-    const _p2 = p2.copy();
-
     const maxTurnsOffset = Math.floor(options.maxTurnsMean * 0.1);
     const maxTurnsBase = options.maxTurnsMean - maxTurnsOffset;
 
@@ -22,10 +19,10 @@ export const twoPlayersVersus =
       maxTurnsBase + Math.floor(maxTurnsOffset * 2 * Math.random());
     const decisions: Decision[] = [];
     while (true) {
-      const decision1 = _p1.turn(decisions);
-      decisions.push(decision1);
+      const decision1 = p1.turn(decisions);
+      const decision2 = p2.turn(decisions);
 
-      const decision2 = _p2.turn(decisions);
+      decisions.push(decision1);
       decisions.push(decision2);
 
       sumPointsToPlayers(decision1, decision2);
@@ -36,7 +33,7 @@ export const twoPlayersVersus =
     }
 
     return {
-      players: [_p1, _p2],
+      players: [p1, p2],
       turns: decisions.length / 2,
       _meta: {
         maxTurnsPairs,

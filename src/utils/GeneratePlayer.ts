@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { ConfigurablePlayer } from "../players/ConfigurablePlayer";
 import { Player } from "../types/Player";
 
-export const generatePlayer = (options: {
+export const generatePlayer = (options?: {
   name?: string;
   cooperate?: number;
   noCooperate?: number;
@@ -10,9 +10,11 @@ export const generatePlayer = (options: {
 }): Player => {
   const name = faker.person.fullName();
   return new ConfigurablePlayer(name, {
-    cooperate: options.cooperate ?? faker.number.float({ min: 0, max: 1.01 }),
+    cooperate: options?.cooperate ?? faker.number.float({ min: 0, max: 1.01 }),
     noCooperate:
-      options.noCooperate ?? faker.number.float({ min: 0, max: 1.01 }),
-    noise: options.noise ?? faker.number.float({ min: 0, max: 1.01 }),
+      options?.noCooperate ??
+      faker.number.float({ min: 0, max: 1 + Number.EPSILON }),
+    noise:
+      options?.noise ?? faker.number.float({ min: 0, max: 1 + Number.EPSILON }),
   });
 };

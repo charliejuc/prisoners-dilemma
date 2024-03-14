@@ -21,6 +21,16 @@ export class ConfigurablePlayer extends Player {
     return new ConfigurablePlayer(this.name, this.probabilities);
   }
 
+  protected getPreviousDecision(decisions: Decision[]): Decision | null {
+    const decision = decisions.at(-1) ?? null;
+
+    if (decision?.player.id === this.id) {
+      return decisions.at(-2) ?? null;
+    }
+
+    return decision;
+  }
+
   protected decide(decisions: Decision[]): boolean {
     const isFirst = decisions.length < 2;
     if (isFirst) {
@@ -45,7 +55,7 @@ export class ConfigurablePlayer extends Player {
       }
     }
 
-    const previousDecision = decisions.at(-1);
+    const previousDecision = this.getPreviousDecision(decisions);
 
     if (previousDecision == null) {
       throw new Error("Must have a previous decision.");
