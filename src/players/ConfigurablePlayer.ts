@@ -23,15 +23,20 @@ export class ConfigurablePlayer extends Player {
 
   protected decide(decisions: Decision[]): boolean {
     const isFirst = decisions.length < 2;
+    const random = Math.random();
     if (isFirst) {
-      return Math.random() >= this.probabilities.noCooperate;
+      return random >= this.probabilities.noCooperate;
     }
 
-    if (Math.random() < this.probabilities.noCooperate) {
+    // this "cumulative" is to get the actual configured probability
+    const cumulativeCooperate =
+      this.probabilities.noCooperate + this.probabilities.cooperate;
+
+    if (random < this.probabilities.noCooperate) {
       return this.noCooperate;
     }
 
-    if (Math.random() < this.probabilities.cooperate) {
+    if (random < cumulativeCooperate) {
       return this.cooperate;
     }
 

@@ -2,7 +2,7 @@ import { ConfigurablePlayer } from "./players/ConfigurablePlayer";
 import { titForTatFactory } from "./players/TitForTat";
 import { twoPlayersVersus } from "./versus/TwoPlayersVersus";
 
-const noise = 0.1;
+const noise = 0.5;
 
 const p1 = titForTatFactory({
   noise,
