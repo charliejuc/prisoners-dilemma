@@ -11,5 +11,7 @@ export abstract class Player {
   protected readonly cooperate = true;
   protected readonly noCooperate = false;
 
-  public abstract decide(decisions: Decision[]): Decision;
+  protected abstract decide(decisions: Decision[]): boolean;
+
+  abstract turn(decisions: Decision[]): Decision;
 }
