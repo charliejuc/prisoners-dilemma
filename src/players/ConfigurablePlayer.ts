@@ -17,6 +17,10 @@ export class ConfigurablePlayer extends Player {
     this.probabilities = probabilities;
   }
 
+  copy(): Player {
+    return new ConfigurablePlayer(this.name, this.probabilities);
+  }
+
   protected decide(decisions: Decision[]): boolean {
     const isFirst = decisions.length < 2;
     if (isFirst) {
