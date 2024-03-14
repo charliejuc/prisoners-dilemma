@@ -1,4 +1,5 @@
 import { titForTatFactory } from "./players/TitForTat";
+import { cartesianProduct } from "./utils";
 import { generatePlayer } from "./utils/GeneratePlayer";
 import { twoPlayersVersus } from "./versus/TwoPlayersVersus";
 
@@ -21,3 +22,7 @@ console.log(_p2);
 console.log(`${_p1.name} points:`, _p1.points);
 console.log(`${_p2.name} points:`, _p2.points);
 console.log("Turns", results.turns);
+
+const arr = [1, 2, 3, 4, 5, 6];
+console.log(cartesianProduct(arr, arr));
+console.log(arr);
