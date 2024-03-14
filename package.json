@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/node": "^20.11.17",
     "ts-node": "^10.9.2",
     "uuid": "^9.0.1"
