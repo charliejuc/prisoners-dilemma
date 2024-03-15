@@ -32,6 +32,6 @@ export const generatePlayerCooperateSmoothed = (options?: {
 
   return generatePlayer({
     ...options,
-    cooperate: options?.cooperate ? cooperate : Math.pow(cooperate, 4),
+    cooperate: options?.cooperate ? cooperate : Math.pow(cooperate, 5),
   });
 };

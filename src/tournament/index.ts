@@ -14,12 +14,15 @@ export const versusTournament =
   ): Player[] => {
     const maxI = options.iterations;
     let i = maxI;
-    let p = players;
-    let resultPlayers: Player[] = [];
+    let resultPlayers = players.slice();
     while (i--) {
-      _log("Running loop:", maxI - i);
+      const loopIndex = maxI - i;
+      _log("Running loop:", loopIndex);
 
-      const playersCartesianProduct = cartesianProduct(p, p);
+      const playersCartesianProduct = cartesianProduct(
+        resultPlayers,
+        resultPlayers
+      );
 
       playersCartesianProduct.forEach(([p1, p2]) =>
         versus({
@@ -27,11 +30,13 @@ export const versusTournament =
         })(p1, p2)
       );
 
-      resultPlayers = p.sort((a, b) => b.points - a.points);
+      resultPlayers.sort((a, b) => b.points - a.points);
       const newPlayers = resultPlayers
         .slice(0, options.reproductionRate)
         .map((p) => p.copy());
-      p = resultPlayers.slice(0, -options.reproductionRate).concat(newPlayers);
+      resultPlayers = resultPlayers
+        .slice(0, -options.reproductionRate)
+        .concat(newPlayers);
 
       _log("Best player in loop:", resultPlayers[0]);
     }

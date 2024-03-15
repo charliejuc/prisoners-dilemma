@@ -9,7 +9,7 @@ const noise = 0.1;
 const p1 = titForTatFactory({
   noise,
 });
-const players = Array.from({ length: 200 }).reduce(
+const players = Array.from({ length: 100 }).reduce(
   (acc: Player[]) => {
     acc.push(
       generatePlayerCooperateSmoothed({
@@ -23,8 +23,8 @@ const players = Array.from({ length: 200 }).reduce(
 
 const resultPlayers = versusTournament(twoPlayersVersus)(players, {
   maxTurnsMean: 200,
-  iterations: 30,
-  reproductionRate: 15,
+  iterations: 20,
+  reproductionRate: 2,
 });
 
 console.log(resultPlayers.slice(0, 5));
