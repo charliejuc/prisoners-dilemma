@@ -46,6 +46,10 @@ export abstract class Player {
     return this._points;
   }
 
+  protected setPoints(points: number) {
+    this._points = points;
+  }
+
   abstract copy(): Player;
 
   protected abstract decide(decisions: Decision[]): boolean;

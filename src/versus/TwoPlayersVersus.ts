@@ -1,6 +1,7 @@
 import { Decision, Player, sumPointsToPlayers } from "../types/Player";
+import { Versus } from "../types/Versus";
 
-export const twoPlayersVersus =
+export const twoPlayersVersus: Versus =
   (options: { maxTurnsMean: number }) =>
   (
     p1: Player,

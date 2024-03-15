@@ -18,7 +18,10 @@ export class ConfigurablePlayer extends Player {
   }
 
   copy(): Player {
-    return new ConfigurablePlayer(this.name, this.probabilities);
+    const playerCopy = new ConfigurablePlayer(this.name, this.probabilities);
+    playerCopy.setPoints(this.points);
+
+    return playerCopy;
   }
 
   protected getPreviousDecision(decisions: Decision[]): Decision | null {
