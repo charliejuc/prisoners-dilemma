@@ -64,20 +64,19 @@ export class ConfigurablePlayer extends Player {
       throw new Error("Must have a previous decision.");
     }
 
-    const decision =
-      Math.random() >= this.probabilities.noise
-        ? previousDecision.cooperate
-        : !previousDecision.cooperate;
+    const decision = previousDecision.cooperate;
 
     return decision;
   }
 
   turn(decisions: Decision[]): Decision {
     const decision = this.decide(decisions);
+    const decisionWithNoise =
+      Math.random() < this.probabilities.noise ? !decision : decision;
 
     return {
       id: randomUUID(),
-      cooperate: decision,
+      cooperate: decisionWithNoise,
       player: this,
       turn: decisions.length,
     };
