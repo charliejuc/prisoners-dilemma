@@ -10,7 +10,9 @@ export const generatePlayer = (options?: {
 }): Player => {
   const name = faker.person.fullName();
   return new ConfigurablePlayer(name, {
-    cooperate: options?.cooperate ?? faker.number.float({ min: 0, max: 1.01 }),
+    cooperate:
+      options?.cooperate ??
+      faker.number.float({ min: 0, max: 1 + Number.EPSILON }),
     noCooperate:
       options?.noCooperate ??
       faker.number.float({ min: 0, max: 1 + Number.EPSILON }),
