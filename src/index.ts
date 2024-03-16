@@ -4,5 +4,5 @@ import { saveJSONFile } from "./utils";
 
 const players = cooperateSmoothed();
 
-const filePath = path.join(__dirname, "players.json");
+const filePath = path.join(__dirname, "files", "players.json");
 saveJSONFile(players, filePath);

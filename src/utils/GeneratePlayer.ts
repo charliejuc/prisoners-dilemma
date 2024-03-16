@@ -29,9 +29,12 @@ export const generatePlayerCooperateSmoothed = (options?: {
 }): Player => {
   const cooperate =
     options?.cooperate ?? faker.number.float({ min: 0, max: 1 });
+  const noCooperate =
+    options?.noCooperate ?? faker.number.float({ min: 0, max: 1 });
 
   return generatePlayer({
     ...options,
-    cooperate: options?.cooperate ? cooperate : Math.pow(cooperate, 10),
+    cooperate: options?.cooperate ? cooperate : Math.pow(cooperate, 8),
+    noCooperate: options?.noCooperate ? noCooperate : Math.pow(noCooperate, 8),
   });
 };

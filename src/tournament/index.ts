@@ -9,6 +9,7 @@ export const versusTournament =
     iterations: number;
     maxTurnsMean: number;
     reproductionRate: number;
+    maxPointsDifferencePercentage: number;
   }): Player[] => {
     const maxI = options.iterations;
     let i = maxI;
@@ -32,8 +33,12 @@ export const versusTournament =
       const newPlayers = resultPlayers
         .slice(0, options.reproductionRate)
         .map((p) => p.copy());
+
+      const firstPlayerPoints = resultPlayers[0].points;
+      const firstPlayerPointsFraction =
+        firstPlayerPoints * options.maxPointsDifferencePercentage;
       resultPlayers = resultPlayers
-        .slice(0, -options.reproductionRate)
+        .filter((p) => firstPlayerPoints - p.points < firstPlayerPointsFraction)
         .concat(newPlayers);
 
       _log("Best player in loop:", resultPlayers[0]);

@@ -10,6 +10,7 @@ export const cooperateSmoothed = (options?: {
   iterations?: number;
   reproductionRate?: number;
   playersLength?: number;
+  maxPointsDifferencePercentage?: number;
 }): Player[] => {
   const noise = options?.noise ?? 0.1;
 
@@ -31,9 +32,11 @@ export const cooperateSmoothed = (options?: {
 
   const resultPlayers = versusTournament(twoPlayersVersus)({
     players,
-    iterations: options?.iterations ?? 20,
-    maxTurnsMean: options?.maxTurnsMean ?? 200,
-    reproductionRate: options?.reproductionRate ?? 2,
+    iterations: options?.iterations ?? 40,
+    maxTurnsMean: options?.maxTurnsMean ?? 400,
+    reproductionRate: options?.reproductionRate ?? 3,
+    maxPointsDifferencePercentage:
+      options?.maxPointsDifferencePercentage ?? 0.08,
   });
 
   return resultPlayers;
