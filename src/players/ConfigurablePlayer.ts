@@ -81,4 +81,18 @@ export class ConfigurablePlayer extends Player {
       turn: decisions.length,
     };
   }
+
+  toJSON(): {
+    id: string;
+    name: string;
+    points: number;
+    probabilities: Probabilities;
+  } {
+    return {
+      id: this.id,
+      name: this.name,
+      points: this.points,
+      probabilities: this.probabilities,
+    };
+  }
 }

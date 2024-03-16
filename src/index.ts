@@ -1,30 +1,8 @@
-import { titForTatFactory } from "./players/TitForTat";
-import { versusTournament } from "./tournament";
-import { Player } from "./types/Player";
-import { generatePlayerCooperateSmoothed } from "./utils/GeneratePlayer";
-import { twoPlayersVersus } from "./versus/TwoPlayersVersus";
+import path from "path";
+import { cooperateSmoothed } from "./modes/CooperateSmoothed";
+import { saveJSONFile } from "./utils";
 
-const noise = 0.1;
+const players = cooperateSmoothed();
 
-const p1 = titForTatFactory({
-  noise,
-});
-const players = Array.from({ length: 100 }).reduce(
-  (acc: Player[]) => {
-    acc.push(
-      generatePlayerCooperateSmoothed({
-        noise,
-      })
-    );
-    return acc;
-  },
-  [p1]
-);
-
-const resultPlayers = versusTournament(twoPlayersVersus)(players, {
-  maxTurnsMean: 200,
-  iterations: 20,
-  reproductionRate: 2,
-});
-
-console.log(resultPlayers.slice(0, 5));
+const filePath = path.join(__dirname, "players.json");
+saveJSONFile(players, filePath);

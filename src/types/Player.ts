@@ -55,4 +55,10 @@ export abstract class Player {
   protected abstract decide(decisions: Decision[]): boolean;
 
   abstract turn(decisions: Decision[]): Decision;
+
+  abstract toJSON(): {
+    id: string;
+    name: string;
+    points: number;
+  };
 }

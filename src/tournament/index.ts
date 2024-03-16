@@ -4,17 +4,15 @@ import { cartesianProduct } from "../utils";
 
 export const versusTournament =
   (versus: Versus, _log = console.log) =>
-  (
-    players: Player[],
-    options: {
-      iterations: number;
-      maxTurnsMean: number;
-      reproductionRate: number;
-    }
-  ): Player[] => {
+  (options: {
+    players: Player[];
+    iterations: number;
+    maxTurnsMean: number;
+    reproductionRate: number;
+  }): Player[] => {
     const maxI = options.iterations;
     let i = maxI;
-    let resultPlayers = players.slice();
+    let resultPlayers = options.players.map((p) => p.copy());
     while (i--) {
       const loopIndex = maxI - i;
       _log("Running loop:", loopIndex);
@@ -41,5 +39,5 @@ export const versusTournament =
       _log("Best player in loop:", resultPlayers[0]);
     }
 
-    return resultPlayers;
+    return resultPlayers.sort((a, b) => b.points - a.points);
   };
