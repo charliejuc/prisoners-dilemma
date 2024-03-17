@@ -41,7 +41,7 @@ export const versusTournament =
         .filter((p) => firstPlayerPoints - p.points < firstPlayerPointsFraction)
         .concat(newPlayers);
 
-      _log("Best player in loop:", resultPlayers[0]);
+      _log("Best player in loop:", resultPlayers[0].toJSON());
     }
 
     return resultPlayers.sort((a, b) => b.points - a.points);
